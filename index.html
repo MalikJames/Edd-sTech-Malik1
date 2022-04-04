@@ -1,0 +1,130 @@
+<!-- Hero -->
+ <!DOCTYPE html>
+ <html>
+   <head>
+     <link rel="stylesheet" href="styles.css">
+     <script> class StickyNavigation {
+	
+        constructor() {
+          this.currentId = null;
+          this.currentTab = null;
+          this.tabContainerHeight = 70;
+          let self = this;
+          $('.et-hero-tab').click(function() { 
+            self.onTabClick(event, $(this)); 
+          });
+          $(window).scroll(() => { this.onScroll(); });
+          $(window).resize(() => { this.onResize(); });
+        }
+        
+        onTabClick(event, element) {
+          event.preventDefault();
+          let scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight + 1;
+          $('html, body').animate({ scrollTop: scrollTop }, 600);
+        }
+        
+        onScroll() {
+          this.checkTabContainerPosition();
+          this.findCurrentTabSelector();
+        }
+        
+        onResize() {
+          if(this.currentId) {
+            this.setSliderCss();
+          }
+        }
+        
+        checkTabContainerPosition() {
+          let offset = $('.et-hero-tabs').offset().top + $('.et-hero-tabs').height() - this.tabContainerHeight;
+          if($(window).scrollTop() > offset) {
+            $('.et-hero-tabs-container').addClass('et-hero-tabs-container--top');
+          } 
+          else {
+            $('.et-hero-tabs-container').removeClass('et-hero-tabs-container--top');
+          }
+        }
+        
+        findCurrentTabSelector(element) {
+          let newCurrentId;
+          let newCurrentTab;
+          let self = this;
+          $('.et-hero-tab').each(function() {
+            let id = $(this).attr('href');
+            let offsetTop = $(id).offset().top    -self.tabContainerHeight;
+            let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
+            if($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
+              newCurrentId = id;
+              newCurrentTab = $(this);
+            }
+          });
+          if(this.currentId != newCurrentId || this.currentId === null) {
+            this.currentId = newCurrentId;
+            this.currentTab = newCurrentTab;
+            this.setSliderCss();
+          }
+        }
+        
+        setSliderCss() {
+          let width = 0;
+          let left = 0;
+          if(this.currentTab) {
+            width = this.currentTab.css('width');
+            left = this.currentTab.offset().left;
+          }
+          $('.et-hero-tab-slider').css('width', width);
+          $('.et-hero-tab-slider').css('left', left);
+        }
+        
+      }</script>
+     <title>Edd's Tech Website</title>
+     </head>
+  <section class="et-hero-tabs">
+    <h1>Welcome to Edd's Tech</h1>
+    <h3>Where Technology is the future!</h3>
+    <div class="et-hero-tabs-container">
+      <a class="et-hero-tab" href="#tab-es6">Home</a>
+      <a class="et-hero-tab" href="#tab-
+       flexbox">Biography</a>
+      <a class="et-hero-tab" href="#tab-react">Contact</a>
+      <a class="et-hero-tab" href="#tab-angular">About</a>
+      <a class="et-hero-tab" href="#tab-other">Other</a>
+      <span class="et-hero-tab-slider"></span>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="et-main">
+    <section class="et-slide" id="tab-es6">
+      <h1>Edd's Tech</h1>
+      <h3>Edd's Tech is a website for those who need help with their technology problems, here we can order and/or ship what you need in order for you to fix what needs to be fixed or we can fix what you need fixed. We are here to fix the unfixable.</h3>
+    </section>
+    <section class="et-slide" id="tab-flexbox">
+      <h1>Who Is Edd?</h1>
+      <h3>Mr Eddie is a student of Ole Miss, Mississippi State university, and ITT there he has a degree in "MGMT Information systems, Computer Information Systems, Computer Networking Systems and Information Security" He has a certification in "Comptia A+, Comptia Network+, Cisco CCNA, and Microsoft Certified Solutions Associate " He's willing to work on anything you have. He does "Desktop Support, Computer Network Support, Server Support, Firewall Support, VOIP Support, Audio Video Support, Cable TV Support, Data Cabling Installation & Termination and Cell Phone Repair."</h3>
+    </section>
+    <section class="et-slide" id="tab-react">
+      <h1>Contact</h1>
+      <h3>Choose who to contact<li>Phone: (731) 736-2881</li>
+ <li>Email: edu101@gmail.com</li>
+ <li>Company Address: 225 Robinhood Ave.</li></h3>
+    </section>
+    <section class="et-slide" id="tab-angular">
+      <h1>About</h1>
+      <h3>Why we do what we do, Keeping computers well-maintained can keep both viruses and malware away and keep your computer running in tip-top shape. Consistent maintenance can also help you ensure your antivirus software is up-to-date and working properly. Nothing can be more exasperating than a computer that processes too slow. </h3>
+    </section>
+    <section class="et-slide" id="tab-other">
+      <h1>Other</h1>
+     <h3>Need Help? Let us know! <p>
+       
+  <li>Phone?</li>
+  <li>Computer?</li>
+  <li>Tablet?</li>
+        <p>
+          We recommend you contact us with all of your problems. Please refer back to the contact page. We are 100% guaranteed successful with our fixes.
+</ul> </h3>
+    </section>
+  </main> 
+
+<img src="<a href="https://ibb.co/M8SCxy3"><img src="https://i.ibb.co/XyLCrfv/work-for-website.jpg" alt="work-for-website"style="width:1905px;height:700px;">
+</body>
+</html>
